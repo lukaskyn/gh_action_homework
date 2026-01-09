@@ -10,7 +10,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -33,7 +34,8 @@ jobs:
         run: ls -lR
 
   second:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: checkout
@@ -66,7 +68,8 @@ jobs:
         run: gh issue create --title "File created" --body "my-homework-results.txt has been created"
 
   release:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: second
     steps:
       - name: Download
