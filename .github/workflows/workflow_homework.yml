@@ -24,7 +24,11 @@ jobs:
         run: terraform init
       - name: tf plan
         run: terraform plan --out=my-plan.tfplan
-
+      - name: upload plan by artifact
+        uses: actions/upload-artifct@v4
+        with:
+          name: my-plan.tfplan
+          path: my-plan.tfplan
       - name: verified
         run: ls -lR
 
