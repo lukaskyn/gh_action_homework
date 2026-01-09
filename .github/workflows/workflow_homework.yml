@@ -50,3 +50,12 @@ jobs:
         run: terraform init && terraform validate && terraform apply -auto-approve -input=false
       - name: verification
         run: ls -lR
+
+  release:
+    runs-on: ubuntu-latest
+    needs: second
+    steps:
+      - name: download my-homework-results
+        uses: actions/download-artifact@v4
+        with:
+          name: my-homework-results.txt
