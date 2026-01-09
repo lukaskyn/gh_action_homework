@@ -25,3 +25,6 @@ jobs:
       - name: tf plan
         run: terraform plan --out=my-plan.tfplan
 
+      - name: verified
+        run: ls -lR
+
