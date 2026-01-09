@@ -1,0 +1,27 @@
+
+name: Terraform
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.5
+          
+      - name: tf init
+        run: terraform init
+        - name: tf validate
+        run: terraform init
+        - name: tf plan
+        run: terraform plan --out=my-plan.tfplan
+
