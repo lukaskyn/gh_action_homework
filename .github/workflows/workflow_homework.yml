@@ -50,10 +50,6 @@ jobs:
         run: terraform init && terraform validate && terraform apply -auto-approve -input=false
       - name: verification
         run: ls -lR
-      - name: download my-homework-results
-        uses: actions/download-artifact@v4
-        with:
-          name: my-homework-results.txt
       - name: Commit and tag
         run: |
           git config user.name "lukaskyn"
