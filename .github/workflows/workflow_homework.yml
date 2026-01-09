@@ -85,5 +85,5 @@ jobs:
     steps:
       - name: create issue
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: gh issue create --title "File created" --body "my-homework-results.txt has been created"
