@@ -21,7 +21,7 @@ jobs:
       - name: tf init
         run: terraform init
       - name: tf validate
-        run: terraform init
+        run: terraform validate
       - name: tf plan
         run: terraform plan --out=my-plan.tfplan
       - name: upload plan by artifact
@@ -34,9 +34,19 @@ jobs:
 
   second:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-          
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup tf
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform-version: '1.7.0'
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: my-plan.tfplan
+      - name: steps in pipeline
+        run: terraform init | terraform validate | terraform apply my-plan.tfplan
+      - name: verification
+        run: ls -lR
