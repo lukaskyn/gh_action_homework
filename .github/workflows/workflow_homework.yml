@@ -47,6 +47,6 @@ jobs:
         with:
           name: my-plan.tfplan
       - name: steps in pipeline
-        run: terraform init | terraform validate | terraform apply
+        run: terraform init && terraform validate && terraform apply
       - name: verification
         run: ls -lR
