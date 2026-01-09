@@ -54,17 +54,23 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-homework-results.txt
+      - name: Commit and tag
+        run: |
+          git config user.name "lukaskyn"
+          git config user.email "lukas@fejk.info"
 
-  release:
-    runs-on: ubuntu-latest
-    needs: second
-    steps:
-      - name: Create release
-        uses: actions/create-release@v1
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME="v1.0.${{ github.run_number }}"
+          git add my-homework-results.txt
+          git commit -m "Automated commit with terraform output nr [$TAG_NAME]"
+          git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
+          git push origin main
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0
-          release_name: Release v1.0
-          body: "release with created file by terraform"
+          tag_name: ${{ steps.git_meta.outputs.tag_name }}
+          name: Release ${{ steps.git_meta.outputs.tag_name }}
+          files: my-homework-results.txt
+          generate_release_notes: true
+
           
