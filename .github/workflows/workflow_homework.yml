@@ -1,6 +1,5 @@
 
 name: Terraform
-
 on:
   push:
     branches: [ "main" ]
@@ -10,13 +9,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  terraform:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup tf
+        uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.5
+          terraform_version: "1.7.0"
       - name: tf init
         run: terraform init
         - name: tf validate
