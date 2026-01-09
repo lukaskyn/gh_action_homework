@@ -17,7 +17,6 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.9.5
-          
       - name: tf init
         run: terraform init
         - name: tf validate
