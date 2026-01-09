@@ -17,11 +17,11 @@ jobs:
       - name: setup tf
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.7.0"
+          terraform-version: '1.7.0'
       - name: tf init
         run: terraform init
-        - name: tf validate
+      - name: tf validate
         run: terraform init
-        - name: tf plan
+      - name: tf plan
         run: terraform plan --out=my-plan.tfplan
 
