@@ -68,7 +68,7 @@ jobs:
       - name: Download
         uses: actions/upload-artifact@v4
         with:
-          name: ./my-homework-results.txt
+          path: ./my-homework-results.txt
 
       - name: ls
         run: ls -R
